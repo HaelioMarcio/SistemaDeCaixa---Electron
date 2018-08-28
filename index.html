@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SIS CAIXA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  
+  <body>    
+  <!-- Where all the magic happens -->
+  <!-- LOGIN FORM -->
+  <div class="text-center" style="padding:50px 0">
+    <div class="logo">SIS - CAIXA</div>
+    <!-- Main Form -->
+    <div class="login-form-1">
+      <form id="login-form" class="text-left">
+        <div class="login-form-main-message"></div>
+        <div class="main-login-form">
+          <div class="login-group">
+            <div class="form-group">
+              <label for="lg_username" class="sr-only">Usuário</label>
+              <input type="text" class="form-control" id="usuario" name="lg_username" placeholder="Usuário" required>
+            </div>
+            <div class="form-group">
+              <label for="lg_password" class="sr-only">Senha</label>
+              <input type="password" class="form-control" id="senha" name="lg_password" placeholder="Senha" required>
+            </div>
+            <div class="form-group login-group-checkbox">
+              <input type="checkbox" id="lg_remember" name="lg_remember">
+              <label for="lg_remember">Lembre-me</label>
+            </div>
+          </div>
+          <button  type="submit" id="logarUsuario" class="login-button"><i class="fa fa-chevron-right"></i></button>
+        </div>
+        <div class="etc-login-form">
+          <p>Esqueceu sua senha? <a href="#">Clique Aqui</a></p>
+          <p>Novo Usuário? <a href="#">Criar uma nova Conta</a></p>
+        </div>
+        <div class="resposta"></div>
+      </form>
+    </div>
+    <!-- end:Main Form -->
+  </div>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>SIS CAIXA - Lista Produtos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <style>
+      
+    </style>
+  </head>
+  <body>  
+    <div class="container">
+      
+    </div>
+    <div class="container">
+      <h5>Lista de Estoque</h5>
+      <form class="form-inline">
+        <div class="form-group">
+          <input type="text" name="nome" class="form-control" >
+        </div>
+        <div class="form-group">
+          <input type="submit" name="nome" class="btn btn-primary" value="Pesquisar" >
+        </div>
+      </form>
+    </div>
+    <div class="container">
+        <div id="resposta"></div>
+        <table class="table table-hover">
+          <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Quantidade</td>
+            <td>Valor</td>
+            <td>Ações</td>
+          </tr>
+
+        </table>
+        
+    </div>
+    <script src="../../js/db.js"></script>
+    <script>
+      var $ = require('jQuery');
+      $(document).ready(function(){
+      });
+
+      const connection = createConnection();
+      connection.execute(
+        'SELECT * FROM produtos',
+        function(err, results, fields){
+          const produtos  = results;
+          var countTr, countTd;
+          countTr = 0;
+          countTd = 0;
+          $.each(results, function(i, obj){
+            countTr++;
+            $('table').append("<tr class=\""+countTr+"\">");
+            $('tr.'+countTr).append("<td>"+obj.id+"</td>");
+            $('tr.'+countTr).append("<td>"+obj.nome+"</td>");
+            $('tr.'+countTr).append("<td>"+obj.quantidade+"</td>");
+            $('tr.'+countTr).append("<td>"+obj.preco+"</td>");
+            $('tr.'+countTr).append(
+              "<td><a href=\"#\" onclick=\"editar("+obj.id+")\" class=\"btn btn-info\">Editar</a> <a href=\"#\" onclick=\"excluir("+obj.id+")\" class=\"btn btn-warning\">Excluir</a></td>"
+            );
+            
+            $.each(obj, function(i, val){
+            });
+            $('table').append("</tr>");
+          });
+        }
+      );
+
+      function editar(id){
+        console.log(id);
+      }
+
+      function excluir(id){
+        connection.execute(
+        'DELETE FROM produtos where id = '+id,
+          function(err, results, fields){
+            if(results){
+              
+              $('#resposta').append("<div class=\"alert alert-info\" role=\"alert\">Produto removido com sucesso.</div>");
+            }
+          }
+        );
+      }
+
+    </script>
+    <script>
+      // You can also require other files to run in this process
+      require('../.././renderer.js')
+    </script>
+
+  </body>
+</html>
